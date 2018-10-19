@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    data: oracle_test
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@//localhost:1521/ORCLPDB1
+    username: steve
+    password: root
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.steve.model
+
