@@ -2,19 +2,25 @@ package com.steve.controller;
 
 
 import com.steve.model.Guest;
+import com.steve.model.Resume;
 import com.steve.service.GuestService;
+import com.steve.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class GuestController {
 
-    @Autowired
+    @Resource
     private GuestService guestService;
+
+    @Resource
+    private ResumeService resumeService;
 
     @RequestMapping("/goRegister")
     public String goRegister(){
@@ -38,7 +44,35 @@ public class GuestController {
     public String login(String acc, String pass, HttpSession session){
         Guest guest = guestService.Login(acc, pass);
         session.setAttribute("guest", guest);
-        return "/user/showGuestMainPage";
+        return goGuestInfo(session);
+    }
+
+    @RequestMapping("/goGuestInfo")
+    public String goGuestInfo(HttpSession session){
+        return "/user/guestInfo";
+    }
+
+    @RequestMapping("/goWriteResume")
+    public String goWriteResume(){
+        return "/user/writeResume";
+    }
+
+    @RequestMapping("/saveResume")
+    public String saveResume(Resume resume, HttpSession session) {
+        Guest guest = (Guest) session.getAttribute("guest");
+        resume.setG_id(guest.getG_id());
+
+        resumeService.saveResume(resume);
+        System.out.println(resume);
+
+        System.out.println("已保存");
+        return goGuestInfo(session);
+    }
+
+    @RequestMapping("/goGeneralMainPage")
+    public String goGeneralMainPage(){
+
+        return "generalMainPage";
     }
 
 

@@ -5,10 +5,10 @@
 
 <mapper namespace="com.steve.dao.GuestDao">
     <select id="getGuestDaoByNameAndPass" resultType="com.steve.model.Guest">
-        select * from GUEST where G_NAME = #{g_name} and G_PASS = #{g_pass}
+        select * from T_GUEST where G_NAME = #{g_name} and G_PASS = #{g_pass}
     </select>
 
     <insert id="saveGuest">
-        insert into GUEST values (GUEST_SEQ.nextval, #{g_name}, #{g_pass})
+        insert into T_GUEST values (GUEST_SEQ.nextval, #{g_name}, #{g_pass})
     </insert>
 </mapper>
