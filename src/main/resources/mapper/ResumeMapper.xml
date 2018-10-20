@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.steve.dao.ResumeDao">
+    <insert id="saveResume" parameterType="com.steve.model.Resume">
+        insert into T_RESUME
+        values (RES_SEQ.nextval, #{res_name}, #{res_gender}, #{g_id}, #{res_birth},#{res_education}, #{res_height}, #{res_weight}, #{res_major}, #{res_marriage},
+#{res_gra_school}, #{res_idcard}, #{res_experience}, #{res_address}, #{res_phone})
+    </insert>
+</mapper>
