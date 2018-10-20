@@ -2,8 +2,10 @@ package com.steve.controller;
 
 
 import com.steve.model.Guest;
+import com.steve.model.Recruitment;
 import com.steve.model.Resume;
 import com.steve.service.GuestService;
+import com.steve.service.RecruitmentService;
 import com.steve.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,15 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class GuestController {
 
     @Resource
     private GuestService guestService;
-
     @Resource
     private ResumeService resumeService;
+    @Autowired
+    private RecruitmentService recruitmentService;
 
     @RequestMapping("/goRegister")
     public String goRegister(){
@@ -70,9 +74,17 @@ public class GuestController {
     }
 
     @RequestMapping("/goGeneralMainPage")
-    public String goGeneralMainPage(){
+    public String goGeneralMainPage(Model model){
+        List<Recruitment> recruitments = recruitmentService.getAllRecruitments();
+        model.addAttribute("recruitments", recruitments);
 
         return "generalMainPage";
+    }
+
+    @RequestMapping("/generateInterview")
+    public String generateInterview(Model model){
+
+        return goGeneralMainPage(model);
     }
 
 

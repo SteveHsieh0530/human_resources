@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.steve.dao.RecruitmentDao">
+    <select id="getALLRecruitments" resultMap="recru_pos">
+        select rec.*, p.*
+        from T_RECRUITMENT rec, T_POSITION p
+    </select>
+    <resultMap id="recru_pos" type="com.steve.model.Recruitment">
+        <id property="recru_id" column="RECRU_ID"/>
+        <result property="recru_time" column="RECRU_TIME"/>
+        <association property="position" javaType="com.steve.model.Position">
+            <id property="p_id" column="P_ID"/>
+            <result property="p_name" column="P_NAME"/>
+            <result property="p_require" column="P_REQUIRE"/>
+            <result property="p_description" column="P_DESCRIPTION"/>
+            <result property="p_salary" column="P_SALARY"/>
+        </association>
+    </resultMap>
+</mapper>   

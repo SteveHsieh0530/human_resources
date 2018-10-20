@@ -6,7 +6,16 @@
     <title>Title</title>
 </head>
 <body>
-    <p></p>
+    <div th:each="rec : ${recruitments}">
+        <span th:text="${rec.getPosition().getP_name()}"></span>
+        <span th:text="${rec.getPosition().getP_salary()}"></span>
+        <span th:text="${rec.getPosition().getP_description()}"></span>
+        <span th:text="${rec.getRecru_time()}"></span>
+        <form action="generateInterview" method="post">
+            <input type="hidden" name="rec_id" th:value="${rec.getRecru_id()}">
+            <input type="submit">
+        </form>
+    </div>
 
 </body>
 </html>
