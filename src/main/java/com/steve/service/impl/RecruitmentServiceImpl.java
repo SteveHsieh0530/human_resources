@@ -17,4 +17,9 @@ public class RecruitmentServiceImpl implements RecruitmentService {
     public List<Recruitment> getAllRecruitments() {
         return recruitmentDao.getALLRecruitments();
     }
+
+    @Override
+    public Recruitment getRecruitmentById(Integer rec_id) {
+        return recruitmentDao.getRecruitmentById(rec_id);
+    }
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Resume implements Serializable {
     private Integer res_id;
-    private Integer g_id;
+    private Guest guest;
     private String res_name;
     private String res_gender;
     private String res_birth;
@@ -19,32 +19,13 @@ public class Resume implements Serializable {
     private String res_address;
     private String res_phone;
 
-    @Override
-    public String toString() {
-        return "Resume{" +
-                "res_id=" + res_id +
-                ", g_id=" + g_id +
-                ", res_name='" + res_name + '\'' +
-                ", res_gender='" + res_gender + '\'' +
-                ", res_birth='" + res_birth + '\'' +
-                ", res_edducation='" + res_education + '\'' +
-                ", res_height=" + res_height +
-                ", res_weight=" + res_weight +
-                ", res_major='" + res_major + '\'' +
-                ", res_marriage='" + res_marriage + '\'' +
-                ", res_gra_school='" + res_gra_school + '\'' +
-                ", res_idcard='" + res_idcard + '\'' +
-                ", res_experience='" + res_experience + '\'' +
-                ", res_address='" + res_address + '\'' +
-                ", res_phone='" + res_phone + '\'' +
-                '}';
-    }
+
 
     public Resume() {
     }
 
-    public Resume(Integer g_id, String res_name, String res_gender, String res_birth, String res_education, Integer res_height, Integer res_weight, String res_major, String res_marriage, String res_gra_school, String res_idcard, String res_experience, String res_address, String res_phone) {
-        this.g_id = g_id;
+    public Resume(Guest guest, String res_name, String res_gender, String res_birth, String res_education, Integer res_height, Integer res_weight, String res_major, String res_marriage, String res_gra_school, String res_idcard, String res_experience, String res_address, String res_phone) {
+        this.guest = guest;
         this.res_name = res_name;
         this.res_gender = res_gender;
         this.res_birth = res_birth;
@@ -68,12 +49,12 @@ public class Resume implements Serializable {
         this.res_id = res_id;
     }
 
-    public Integer getG_id() {
-        return g_id;
+    public Guest getGuest() {
+        return guest;
     }
 
-    public void setG_id(Integer g_id) {
-        this.g_id = g_id;
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
 
     public String getRes_name() {

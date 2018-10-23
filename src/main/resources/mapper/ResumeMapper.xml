@@ -6,7 +6,34 @@
 <mapper namespace="com.steve.dao.ResumeDao">
     <insert id="saveResume" parameterType="com.steve.model.Resume">
         insert into T_RESUME
-        values (RES_SEQ.nextval, #{res_name}, #{res_gender}, #{g_id}, #{res_birth},#{res_education}, #{res_height}, #{res_weight}, #{res_major}, #{res_marriage},
+        values (RES_SEQ.nextval, #{res_name}, #{res_gender}, #{guest.g_id}, #{res_birth},#{res_education}, #{res_height}, #{res_weight}, #{res_major}, #{res_marriage},
 #{res_gra_school}, #{res_idcard}, #{res_experience}, #{res_address}, #{res_phone})
     </insert>
+
+    <select id="getResumeByGuestId" resultMap="res_guest">
+        select res.*, g.*
+        from T_RESUME res, T_GUEST g
+        where res.G_ID=#{guest_id}
+    </select>
+
+    <resultMap id="res_guest" type="com.steve.model.Resume">
+        <id property="res_id" column="RES_ID"/>
+        <result property="res_name" column="RES_NAME"/>
+        <result property="res_gender" column="RES_GENDER"/>
+        <result property="res_birth" column="RES_BIRTH"/>
+        <result property="res_education" column="RES_EDUCATION"/>
+        <result property="res_height" column="RES_HEIGHT"/>
+        <result property="res_weight" column="RES_WEIGHT"/>
+        <result property="res_major" column="RES_MAJOR"/>
+        <result property="res_marriage" column="RES_MARRIAGE"/>
+        <result property="res_gra_school" column="RES_GRA_SCHOOL"/>
+        <result property="res_idcard" column="RES_IDCARD"/>
+        <result property="res_experience" column="RES_EXPERIENCE"/>
+        <result property="res_address" column="RES_ADDRESS"/>
+        <result property="res_phone" column="RES_PHONE"/>
+        <association property="guest" javaType="com.steve.model.Guest">
+            <id property="g_id" column="G_ID"/>
+            <result property="g_name" column="G_NAME"/>
+        </association>
+    </resultMap>
 </mapper>

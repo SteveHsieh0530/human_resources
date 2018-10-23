@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface RecruitmentDao {
     List<Recruitment> getALLRecruitments();
+
+    Recruitment getRecruitmentById(Integer rec_id);
 }

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ResumeDao {
     void saveResume(Resume resume);
+    Resume getResumeByGuestId(Integer guest_id);
 }

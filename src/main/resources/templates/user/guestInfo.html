@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,5 +9,12 @@
     <p>游客基本信息</p>
     <a href="goWriteResume">写简历</a>
     <a href="goGeneralMainPage">返回主页</a>
+    <div th:each="inter : ${interviews}">
+        <span th:text="${inter.getI_send_time()}"></span>
+        <form action="acceptInterview" method="post">
+            <input type="hidden" name="inter_id" th:value="${inter.getI_id()}">
+            <input type="submit" value="接受面试邀请">
+        </form>
+    </div>
 </body>
 </html>

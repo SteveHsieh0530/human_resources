@@ -17,4 +17,10 @@ public class ResumeServiceImpl implements ResumeService {
         resumeDao.saveResume(resume);
         return true;
     }
+
+    @Override
+    public Resume getResumeByGuestId(Integer guest_id) {
+
+        return resumeDao.getResumeByGuestId(guest_id);
+    }
 }

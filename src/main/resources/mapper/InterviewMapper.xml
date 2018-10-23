@@ -4,7 +4,66 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.steve.dao.InterviewDao">
-    <insert id="saveInterview" >
-
+    <insert id="saveInterview" parameterType="com.steve.model.Interview">
+        insert into T_INTERVIEW
+        (I_ID, RES_ID, RECRU_ID, I_SEND_TIME, I_STATUS)
+        values (INTER_SEQ.nextval, #{resume.res_id}, #{recruitment.recru_id},
+         #{i_send_time}, #{i_status})
     </insert>
+    <select id="getInterviewByGuestID" resultMap="inter_res">
+        select i.*, res.*, recru.*
+        from T_INTERVIEW i, T_RESUME res, T_RECRUITMENT recru
+        where i.RES_ID = (select RES_ID from T_RESUME where G_ID = #{g_id}) and
+        i.RECRU_ID = recru.RECRU_ID
+    </select>
+    <select id="getInterviewById" resultMap="inter_res">
+        select i.*, res.*, recru.*
+        from T_INTERVIEW i, T_RESUME res, T_RECRUITMENT recru
+        where i.RES_ID = res.RES_ID and
+        i.RECRU_ID = recru.RECRU_ID and
+        i.I_ID = #{inter_id}
+    </select>
+    <update id="updateInterview" parameterType="com.steve.model.Interview">
+        update T_INTERVIEW
+        set I_STATUS = #{i_status}
+        where I_ID = ${i_id}
+    </update>
+
+    <resultMap id="inter_res" type="com.steve.model.Interview">
+        <id property="i_id" column="I_ID"/>
+        <id property="i_invite_time" column="I_INVITE_TIME"/>
+        <id property="i_send_time" column="I_SEND_TIME"/>
+        <id property="i_status" column="I_STATUS"/>
+        <association property="resume" javaType="com.steve.model.Resume">
+            <id property="res_id" column="RES_ID"/>
+            <result property="res_name" column="RES_NAME"/>
+            <result property="res_gender" column="RES_GENDER"/>
+            <result property="res_birth" column="RES_BIRTH"/>
+            <result property="res_education" column="RES_EDUCATION"/>
+            <result property="res_height" column="RES_HEIGHT"/>
+            <result property="res_weight" column="RES_WEIGHT"/>
+            <result property="res_major" column="RES_MAJOR"/>
+            <result property="res_marriage" column="RES_MARRIAGE"/>
+            <result property="res_gra_school" column="RES_GRA_SCHOOL"/>
+            <result property="res_idcard" column="RES_IDCARD"/>
+            <result property="res_experience" column="RES_EXPERIENCE"/>
+            <result property="res_address" column="RES_ADDRESS"/>
+            <result property="res_phone" column="RES_PHONE"/>
+            <association property="guest" javaType="com.steve.model.Guest">
+                <id property="g_id" column="G_ID"/>
+                <result property="g_name" column="G_NAME"/>
+            </association>
+        </association>
+        <association property="recruitment" javaType="com.steve.model.Recruitment">
+            <id property="recru_id" column="RECRU_ID"/>
+            <result property="recru_time" column="RECRU_TIME"/>
+            <association property="position" javaType="com.steve.model.Position">
+                <id property="p_id" column="P_ID"/>
+                <result property="p_name" column="P_NAME"/>
+                <result property="p_require" column="P_REQUIRE"/>
+                <result property="p_description" column="P_DESCRIPTION"/>
+                <result property="p_salary" column="P_SALARY"/>
+            </association>
+        </association>
+    </resultMap>
 </mapper>
