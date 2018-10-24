@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="saveResume" method="post">
+    姓名<input name="res_name" th:value="${theResume.name}"><br/>
+    性别<input name="res_gender" th:value="${theResume.gender}"><br/>
+    出生日期<input name="res_birth" th:value="${theResume.birth}"><br/>
+    地址<input name="res_address" th:value="${theResume.address}"><br/>
+    电话<input name="res_phone" th:value="${theResume.phone}"><br/>
+    职位<input name="position"><br/>
+    部门<input name="department"><br/>
+
+    <input type="submit" value="录用员工生成新账号">
+</form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.steve.dao.DepartmentDao">
+    <insert id="saveDepartment" >
+        insert into T_DEPARTMENT (DEP_ID, DEP_NAME, DEP_CREATE_TIME)
+        values (DEP_SEQ.nextval, #{dep_name}, #{dep_create_time})
+    </insert>
+    <select id="getDepartmentByName" resultType="com.steve.model.Department">
+        select *
+        from T_DEPARTMENT
+        WHERE DEP_NAME = #{depart_name}
+    </select>
+</mapper>

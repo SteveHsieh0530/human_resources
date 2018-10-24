@@ -6,16 +6,26 @@ public class Position {
     private String p_require;
     private String p_description;
     private Double p_salary;
+    private Department department;
 
 
     public Position() {
     }
 
-    public Position(String p_name, String p_require, String p_description, Double p_salary) {
+    public Position(String p_name, String p_require, String p_description, Double p_salary, Department department) {
         this.p_name = p_name;
         this.p_require = p_require;
         this.p_description = p_description;
         this.p_salary = p_salary;
+        this.department = department;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Integer getP_id() {

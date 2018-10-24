@@ -132,4 +132,18 @@ public class GuestController {
     }
 
 
+    /*
+        记住这个方法之后需要大改, 创建员工的时候应该要先去数据库确认已有的部门以及职位
+        再到页面用下拉选单给管理员选择新创的员工所在的职位(2级联动?)
+     */
+    @RequestMapping("/goGenerateEmployee")
+    public String goGenerateEmployee (Integer inter_id, Model model){
+        Interview interview = interviewService.getInterviewById(inter_id);
+
+        
+        model.addAttribute("theResume", interview.getResume());
+        return "/admin/showGenerateEmployee";
+    }
+
+
 }
