@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.steve.dao.EmployeeDao">
+    <insert id="saveEmployee">
+        insert into T_EMPLOYEE
+        (EMP_ID, EMP_NAME, EMP_PASS, EMP_GENDER, EMP_ADDRESS, EMP_PHONE, EMP_SALARY, P_ID, EMP_ACC, EMP_BIRTH)
+        values (EMP_SEQ.nextval, #{emp_name}, #{emp_pass},#{emp_gender},
+        #{emp_address},#{emp_phone},#{emp_salary},#{position.p_id}, #{emp_acc}, #{emp_birth})
+    </insert>
+</mapper>

@@ -38,8 +38,6 @@ public class GuestController {
     }
     @RequestMapping("/register")
     public String register (String acc, String pass){
-        System.out.println(acc);
-        System.out.println(pass);
         guestService.register(acc, pass);
         return goLogin();
     }
@@ -53,7 +51,6 @@ public class GuestController {
     public String login(String acc, String pass, HttpSession session, Model model){
         //管理员这里的登录设计记得要改 目前只是方便测试
         if(acc.equals("admin") && pass.equals("admin")){
-
             return goAdminInfo();
         }else{
             Guest guest = guestService.Login(acc, pass);
@@ -140,7 +137,6 @@ public class GuestController {
     public String goGenerateEmployee (Integer inter_id, Model model){
         Interview interview = interviewService.getInterviewById(inter_id);
 
-        
         model.addAttribute("theResume", interview.getResume());
         return "/admin/showGenerateEmployee";
     }

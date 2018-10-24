@@ -7,6 +7,11 @@
     <select id="getGuestDaoByNameAndPass" resultType="com.steve.model.Guest">
         select * from T_GUEST where G_NAME = #{g_name} and G_PASS = #{g_pass}
     </select>
+    <select id="getGuestById" resultType="com.steve.model.Guest">
+        select *
+        from T_GUEST
+        where G_ID = #{guest_id}
+    </select>
 
     <insert id="saveGuest">
         insert into T_GUEST values (GUEST_SEQ.nextval, #{g_name}, #{g_pass})

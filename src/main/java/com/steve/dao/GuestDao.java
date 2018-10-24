@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface GuestDao {
     Guest getGuestDaoByNameAndPass(Guest guest);
     void saveGuest(Guest guest);
+
+    Guest getGuestById(Integer guest_id);
 }

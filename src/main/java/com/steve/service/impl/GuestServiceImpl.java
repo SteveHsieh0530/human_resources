@@ -31,4 +31,10 @@ public class GuestServiceImpl implements GuestService {
 
         return false;
     }
+
+    @Override
+    public Guest getGuestById(Integer guest_id) {
+
+        return guestDao.getGuestById(guest_id);
+    }
 }
