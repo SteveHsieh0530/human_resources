@@ -46,16 +46,27 @@ public class GuestController {
 
     @RequestMapping("/goLogin")
     public String goLogin(){
-        System.out.println("pass go login");
         return "/user/login";
     }
 
     @RequestMapping("/login")
     public String login(String acc, String pass, HttpSession session, Model model){
-        Guest guest = guestService.Login(acc, pass);
-        session.setAttribute("guest", guest);
-        return goGuestInfo(session, model);
+        //管理员这里的登录设计记得要改 目前只是方便测试
+        if(acc.equals("admin") && pass.equals("admin")){
+
+            return goAdminInfo();
+        }else{
+            Guest guest = guestService.Login(acc, pass);
+            session.setAttribute("guest", guest);
+            return goGuestInfo(session, model);
+        }
+
     }
+    @RequestMapping("/goAdminInfo")
+    public String goAdminInfo(){
+        return "/admin/adminMainPage";
+    }
+
 
     @RequestMapping("/goGuestInfo")
     public String goGuestInfo(HttpSession session, Model model){

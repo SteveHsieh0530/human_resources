@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:each="i : ${interviews}">
+        <span th:text="${i.getRecruitment().getPosition().getP_name()}"></span>
+        <div th:switch="${i.i_status}">
+            <form action="inviteInterview" method="post" th:case="'0'">
+                <input type="hidden" th:value="${i.i_id}"/>
+                <input type="submit" value="发送面试邀请">
+            </form>
+            <form action="acceptInterview" method="post" th:case="'3'">
+                <input type="hidden" th:value="${i.i_id}"/>
+                <input type="submit" value="录用为员工">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

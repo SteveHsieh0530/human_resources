@@ -36,4 +36,14 @@ public class InterviewServiceImpl implements InterviewService {
     public void updateInterview(Interview interview) {
         interviewDao.updateInterview(interview);
     }
+
+    @Override
+    public List<Interview> getAllInterviews() {
+        return interviewDao.getAllInterviews();
+    }
+
+    @Override
+    public List<Interview> getInterviewByStatus(Integer status) {
+        return interviewDao.getInterviewByStatus(status);
+    }
 }

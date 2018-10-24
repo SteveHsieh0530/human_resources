@@ -13,4 +13,8 @@ public interface InterviewService {
     Interview getInterviewById(Integer inter_id);
 
     void updateInterview(Interview interview);
+
+    List<Interview> getAllInterviews();
+
+    List<Interview> getInterviewByStatus(Integer status);
 }

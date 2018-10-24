@@ -23,6 +23,20 @@
         i.RECRU_ID = recru.RECRU_ID and
         i.I_ID = #{inter_id}
     </select>
+    <select id="getAllInterviews" resultMap="inter_res">
+        select i.*, res.*, recru.*
+        from T_INTERVIEW i, T_RESUME res, T_RECRUITMENT recru
+        where i.RES_ID = res.RES_ID and
+        i.RECRU_ID = recru.RECRU_ID
+    </select>
+    <select id="getInterviewByStatus" resultMap="inter_res">
+         select i.*, res.*, recru.*, p.*
+        from T_INTERVIEW i, T_RESUME res, T_RECRUITMENT recru, T_POSITION p
+        where i.RES_ID = res.RES_ID and
+        i.RECRU_ID = recru.RECRU_ID and
+        recru.P_ID = p.P_ID and
+        i.I_STATUS = #{status}
+    </select>
     <update id="updateInterview" parameterType="com.steve.model.Interview">
         update T_INTERVIEW
         set I_STATUS = #{i_status}
