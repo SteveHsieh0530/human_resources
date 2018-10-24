@@ -15,9 +15,9 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @RequestMapping("/deleteDepartment")
-    public String deleteDepartment(Integer dep_id){
+    public String deleteDepartment(Integer dep_id, Model model){
         boolean check = departmentService.deleteDepartment(dep_id);
-        return "";
+        return goCreateNewDepartment(model);
     }
 
     @RequestMapping("/updateDepartment")

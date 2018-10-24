@@ -1,9 +1,11 @@
 package com.steve.service.impl;
 
 import com.steve.dao.DepartmentDao;
+import com.steve.dao.EmployeeDao;
 import com.steve.dao.PositionDao;
 import com.steve.dao.ResumeDao;
 import com.steve.model.Department;
+import com.steve.model.Employee;
 import com.steve.model.Position;
 import com.steve.service.DepartmentService;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentDao departmentDao;
     @Resource
     private PositionDao positionDao;
+    @Resource
+    private EmployeeDao employeeDao;
     /*
         记住之后要添加重名判断
      */
@@ -71,10 +75,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public boolean deleteDepartment(Integer dep_id) {
-
-        List<Position> positions = positionDao.getAllPosition();
-
-
+        List<Employee> employees = employeeDao.getEmployeeByDepId(dep_id);
+        if(employees.size() > 0){
+            return false;
+        }
         departmentDao.deleteDepartment(dep_id);
         return true;
     }
