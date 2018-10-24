@@ -15,6 +15,11 @@
         from T_POSITION pos, T_DEPARTMENT dep
         where pos.DEP_ID = dep.DEP_ID and pos.P_NAME = #{position_name}
     </select>
+    <select id="getAllPosition" resultMap="pos_dep">
+        select pos.*, dep.*
+        from T_POSITION pos, T_DEPARTMENT dep
+        where pos.DEP_ID = dep.DEP_ID
+    </select>
     <resultMap id="pos_dep" type="com.steve.model.Position">
         <id property="p_id" column="P_ID"/>
         <result property="p_name" column="P_NAME"/>

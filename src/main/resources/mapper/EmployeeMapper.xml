@@ -6,8 +6,30 @@
 <mapper namespace="com.steve.dao.EmployeeDao">
     <insert id="saveEmployee">
         insert into T_EMPLOYEE
-        (EMP_ID, EMP_NAME, EMP_PASS, EMP_GENDER, EMP_ADDRESS, EMP_PHONE, EMP_SALARY, P_ID, EMP_ACC, EMP_BIRTH)
+        (EMP_ID, EMP_NAME, EMP_PASS, EMP_GENDER, EMP_ADDRESS, EMP_PHONE,
+        EMP_SALARY, P_ID, EMP_ACC, EMP_BIRTH, EMP_STATUS, EMP_CREATE_TIME)
         values (EMP_SEQ.nextval, #{emp_name}, #{emp_pass},#{emp_gender},
-        #{emp_address},#{emp_phone},#{emp_salary},#{position.p_id}, #{emp_acc}, #{emp_birth})
+        #{emp_address},#{emp_phone},#{emp_salary},#{position.p_id},
+        #{emp_acc}, #{emp_birth}, #{emp_status}, #{emp_create_time})
     </insert>
+    <resultMap id="emp_pos_dep" type="com.steve.model.Employee">
+        <id property="emp_id" column="EMP_ID"/>
+        <result property="emp_name" column="EMP_NAME"/>
+        <result property="emp_pass" column="EMP_PASS"/>
+        <result property="emp_gender" column="EMP_GENDER"/>
+        <result property="emp_address" column="EMP_ADDRESS"/>
+        <result property="emp_phone" column="EMP_PHONE"/>
+        <result property="emp_salary" column="EMP_SALARY"/>
+        <result property="emp_acc" column="EMP_ACC"/>
+        <result property="emp_birth" column="EMP_BIRTH"/>
+        <result property="emp_status" column="EMP_STATUS"/>
+        <result property="emp_create_time" column="EMP_CREATE_TIME"/>
+        <association property="position" javaType="com.steve.model.Position">
+            <id property="p_id" column="P_ID"/>
+            <result property="p_name" column="P_NAME"/>
+            <result property="p_salary" column="P_SALARY"/>
+
+        </association>
+
+    </resultMap>
 </mapper>

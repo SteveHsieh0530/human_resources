@@ -8,9 +8,27 @@
         insert into T_DEPARTMENT (DEP_ID, DEP_NAME, DEP_CREATE_TIME)
         values (DEP_SEQ.nextval, #{dep_name}, #{dep_create_time})
     </insert>
+    <update id="updateDepartment">
+        update T_DEPARTMENT
+        set DEP_NAME = #{dep_name}
+        where DEP_ID = #{dep_id}
+    </update>
+    <delete id="deleteDepartment">
+        delete from T_DEPARTMENT
+        where DEP_ID = #{dep_id}
+    </delete>
+    <select id="getDepartmentById" resultType="com.steve.model.Department">
+        select *
+        from T_DEPARTMENT
+        where DEP_ID = #{dep_id}
+    </select>
     <select id="getDepartmentByName" resultType="com.steve.model.Department">
         select *
         from T_DEPARTMENT
         WHERE DEP_NAME = #{depart_name}
+    </select>
+    <select id="getAllDepartments" resultType="com.steve.model.Department">
+        select *
+        from T_DEPARTMENT
     </select>
 </mapper>

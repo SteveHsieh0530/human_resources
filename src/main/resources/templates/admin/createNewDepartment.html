@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,5 +10,34 @@
         部门名字: <input name="department_name"><br/>
         <input type="submit">
     </form>
+
+    <table>
+        <tr>
+            <td>部门名字</td>
+            <td>部门开创时间</td>
+            <td>删除</td>
+            <td>修改部门名字</td>
+        </tr>
+        <tr th:each="dep : ${departments}">
+            <form action="updateDepartment" method="post">
+                <td>
+                    <input name="dep_name" th:value="${dep.dep_name}">
+                </td>
+                <td th:text="${dep.dep_create_time}"></td>
+                <td>
+
+                    <input type="hidden" name="dep_id" th:value="${dep.dep_id}"/>
+                    <input type="submit" th:value="更改名字"/>
+                </td>
+            </form>
+            <td>
+                <form action="deleteDepartment" method="post">
+                    <input type="hidden" name="dep_id" th:value="${dep.dep_id}"/>
+                    <input type="submit" th:value="删除该死的部门"/>
+                </form>
+            </td>
+
+        </tr>
+    </table>
 </body>
 </html>

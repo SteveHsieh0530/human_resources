@@ -1,6 +1,7 @@
 package com.steve.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Employee implements Serializable {
     private Integer emp_id;
@@ -13,8 +14,26 @@ public class Employee implements Serializable {
     private Double emp_salary;
     private Position position;
     private String emp_acc;
+    private Integer emp_status;
+    private Date emp_create_time;
 
     public Employee() {
+    }
+
+    public Date getEmp_create_time() {
+        return emp_create_time;
+    }
+
+    public void setEmp_create_time(Date emp_create_time) {
+        this.emp_create_time = emp_create_time;
+    }
+
+    public Integer getEmp_status() {
+        return emp_status;
+    }
+
+    public void setEmp_status(Integer emp_status) {
+        this.emp_status = emp_status;
     }
 
     public String getEmp_acc() {

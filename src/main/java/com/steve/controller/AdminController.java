@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -42,21 +43,7 @@ public class AdminController {
         interviewService.updateInterview(interview);
         return checkInterview(model, 0);
     }
-    @RequestMapping("/goCreateNewDepartment")
-    public String goCreateNewDepartment(){
-        return "/admin/createNewDepartment";
-    }
 
-    /*
-        以后修改要注意重名问题
-     */
-    @RequestMapping("/createNewDepartment")
-    public String createNewDepartment(String department_name){
-        boolean hello = departmentService.saveDepartment(department_name);  //因重名问题要判断是否ok
-
-
-        return "/admin/adminMainPage";
-    }
     /*
         之后都该考虑将查看与创造 合成一个网页
      */
@@ -71,6 +58,8 @@ public class AdminController {
      */
     @RequestMapping("createPosition")
     public String createPosition(Position position, String depart_name){
+
+
         Department department = departmentService.getDepartmentByName(depart_name); //　之后可看情况改成用ID查询
         position.setDepartment(department);
         boolean check = positionService.savePosition(position); //之后要考虑重名等问题
@@ -89,7 +78,8 @@ public class AdminController {
         String emp_acc = guest.getG_name() + "_malhaha";
         employee.setEmp_acc(emp_acc);   //账号为原本游客账号+下划线+公司名
         employee.setEmp_pass(guest.getG_pass()); //密码为游客原本密码
-
+        employee.setEmp_status(0); // 设定新员工状态 0 代表是试用期
+        employee.setEmp_create_time(new Date());
 
         boolean check = employeeService.saveEmployee(employee);
 
