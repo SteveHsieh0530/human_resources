@@ -70,7 +70,8 @@ public class AdminController {
     public String createPosition(Position position, String depart_name){
         Department department = departmentService.getDepartmentByName(depart_name); //　之后可看情况改成用ID查询
         position.setDepartment(department);
-        
+
+
         return "";
     }
 
