@@ -4,6 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script>
+        $(function(){
+            $("#selpos").change(function(){
+                var val = $("#selpos").val();
+                $.ajax({
+                    type:"get",
+                    url:"diff_pos?selected=" + val,
+                    success:function (obj) {
+                        $("#load").empty();
+                        var arr = obj.replies;
+                        for(var i = 0; i < obj.replies.length; i++){
+                            var name = arr[i].name + "<br>";
+                            $("#load").prepend(name);
+
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body>
     <form action="createPosition" method="post">
@@ -14,5 +35,12 @@
         部门名<input name="depart_name"><br/>
         <input type="submit" value="创建职位">
     </form>
+
+    <select name="test" id="selpos">
+        <option>请选择职位</option>
+        <option th:each="pos : ${positions}"
+                th:text="${pos.p_name}"
+                th:value="${pos.p_id}"></option>
+    </select>
 </body>
 </html>

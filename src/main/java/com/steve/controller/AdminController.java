@@ -44,28 +44,7 @@ public class AdminController {
         return checkInterview(model, 0);
     }
 
-    /*
-        之后都该考虑将查看与创造 合成一个网页
-     */
-    @RequestMapping("/goCreatePosition")
-    public String goCreatePosition(){
 
-        return "/admin/createPosition";
-    }
-
-    /*
-        之后应当改成选择职位部门时应该用下拉框选择
-     */
-    @RequestMapping("createPosition")
-    public String createPosition(Position position, String depart_name){
-
-
-        Department department = departmentService.getDepartmentByName(depart_name); //　之后可看情况改成用ID查询
-        position.setDepartment(department);
-        boolean check = positionService.savePosition(position); //之后要考虑重名等问题
-
-        return "/admin/adminMainPage";
-    }
     @RequestMapping("generateEmployee")
     public String generateEmployee(Employee employee, String position_name, Integer guest_id){
         //生成新账号需要除了从游客简历扒过来的信息外，还需要自动生成一个新账号(原本的游客账号+下划线+公司名malhaha, 密码不变)
