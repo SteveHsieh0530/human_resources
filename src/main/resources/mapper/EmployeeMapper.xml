@@ -19,6 +19,12 @@
         p.DEP_ID = dep.DEP_ID and
         dep.DEP_ID = #{dep_id}
     </select>
+    <select id="getEmployeeByPos" resultMap="emp_pos_dep">
+        select emp.*
+        from T_EMPLOYEE emp, T_POSITION p
+        where emp.P_ID = p.P_ID and
+        p.P_ID = #{selected}
+    </select>
     <resultMap id="emp_pos_dep" type="com.steve.model.Employee">
         <id property="emp_id" column="EMP_ID"/>
         <result property="emp_name" column="EMP_NAME"/>

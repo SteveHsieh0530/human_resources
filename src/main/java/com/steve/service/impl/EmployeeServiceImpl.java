@@ -6,6 +6,7 @@ import com.steve.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -16,5 +17,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public boolean saveEmployee(Employee employee) {
         employeeDao.saveEmployee(employee);
         return false;
+    }
+
+    @Override
+    public List<Employee> getEmployeeByPos(Integer selected) {
+        return employeeDao.getEmployeeByPos(selected);
     }
 }

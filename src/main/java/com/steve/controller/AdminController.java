@@ -12,11 +12,8 @@ import java.util.List;
 
 @Controller
 public class AdminController {
-
     @Resource
     private InterviewService interviewService;
-    @Resource
-    private DepartmentService departmentService;
     @Resource
     private PositionService positionService;
     @Resource

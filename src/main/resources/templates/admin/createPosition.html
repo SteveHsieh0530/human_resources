@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/jquery-3.2.1.js"></script>
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
     <script>
         $(function(){
             $("#selpos").change(function(){
@@ -14,9 +14,8 @@
                     url:"diff_pos?selected=" + val,
                     success:function (obj) {
                         $("#load").empty();
-                        var arr = obj.replies;
-                        for(var i = 0; i < obj.replies.length; i++){
-                            var name = arr[i].name + "<br>";
+                        for(var i = 0; i < obj.length; i++){
+                            var name = obj[i].emp_name + "<br>";
                             $("#load").prepend(name);
 
                         }
@@ -36,11 +35,17 @@
         <input type="submit" value="创建职位">
     </form>
 
-    <select name="test" id="selpos">
-        <option>请选择职位</option>
-        <option th:each="pos : ${positions}"
-                th:text="${pos.p_name}"
-                th:value="${pos.p_id}"></option>
-    </select>
+    <form action="deletePosition" method="post">
+        <select name="selected" id="selpos">
+            <option>请选择职位</option>
+            <option th:each="pos : ${positions}"
+                    th:text="${pos.p_name}"
+                    th:value="${pos.p_id}"></option>
+        </select>
+        <input type="submit" value="删除选中的职位">
+    </form>
+    <div id="load">
+
+    </div>
 </body>
 </html>

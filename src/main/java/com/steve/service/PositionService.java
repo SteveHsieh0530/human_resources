@@ -10,4 +10,8 @@ public interface PositionService {
     Position getPositionByName(String position_name);
 
     List<Position> getAllPositions();
+
+    boolean deletePosition(Integer selected);
+
+    boolean updatePosition(Position position);
 }

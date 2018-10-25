@@ -36,14 +36,14 @@ public class PositionController {
     }
 
     @RequestMapping("/deletePosition")
-    public String deletePosition (Model model){
-
+    public String deletePosition (Integer selected, Model model){
+        boolean check = positionService.deletePosition(selected);
         return goCreatePosition(model);
     }
 
     @RequestMapping("/updatePosition")
-    public String updatePosition(Model model){
-
+    public String updatePosition(Position position, Model model){
+        boolean check = positionService.updatePosition(position);
         return goCreatePosition(model);
     }
 

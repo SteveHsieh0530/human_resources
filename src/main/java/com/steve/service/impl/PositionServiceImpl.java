@@ -46,4 +46,16 @@ public class PositionServiceImpl implements PositionService {
 
         return positionDao.getAllPosition();
     }
+
+    @Override
+    public boolean deletePosition(Integer selected) {
+        positionDao.deletePosition(selected);
+        return true;
+    }
+
+    @Override
+    public boolean updatePosition(Position position) {
+        positionDao.updatePosition(position);
+        return false;
+    }
 }

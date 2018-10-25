@@ -8,8 +8,16 @@
         insert into T_POSITION
         (P_ID, P_NAME, P_SALARY, DEP_ID)
         values (POS_SEQ.nextval, #{p_name}, #{p_salary}, #{department.dep_id})
-
     </insert>
+    <delete id="deletePosition">
+        delete from T_POSITION
+        where P_ID = #{selected}
+    </delete>
+    <update id="updatePosition">
+        update T_POSITION
+        set P_NAME = #{p_name}, P_SALARY = #{p_salary}, DEP_ID = #{department.dep_id}
+        where P_ID = #{p_id}
+    </update>
     <select id="getPositionByName" resultMap="pos_dep">
         select pos.*, dep.*
         from T_POSITION pos, T_DEPARTMENT dep
@@ -20,6 +28,7 @@
         from T_POSITION pos, T_DEPARTMENT dep
         where pos.DEP_ID = dep.DEP_ID
     </select>
+
     <resultMap id="pos_dep" type="com.steve.model.Position">
         <id property="p_id" column="P_ID"/>
         <result property="p_name" column="P_NAME"/>

@@ -11,4 +11,6 @@ public interface EmployeeDao {
     void saveEmployee(Employee employee);
 
     List<Employee> getEmployeeByDepId(Integer dep_id);
+
+    List<Employee> getEmployeeByPos(Integer selected);
 }
