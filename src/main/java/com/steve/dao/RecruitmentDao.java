@@ -10,4 +10,10 @@ public interface RecruitmentDao {
     List<Recruitment> getALLRecruitments();
 
     Recruitment getRecruitmentById(Integer rec_id);
+
+    boolean saveRecruitment(Recruitment recruitment);
+
+    boolean updateRecruitment(Recruitment recruitment);
+
+    boolean deleteRecruitment(Integer recru_id);
 }

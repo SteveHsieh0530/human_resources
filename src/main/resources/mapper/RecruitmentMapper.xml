@@ -4,6 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.steve.dao.RecruitmentDao">
+    <insert id="saveRecruitment">
+        insert into T_RECRUITMENT
+        (RECRU_ID, P_ID, RECRU_TIME, RECRU_REQUIRE, RECRU_DESCRIPTION)
+        values (RECRU_SEQ.nextval, #{position.p_id}, #{recru_time},
+        #{recru_require}, #{recru_description})
+    </insert>
+    <update id="updateRecruitment">
+        update T_RECRUITMENT
+        set RECRU_REQUIRE = #{recru_require}, RECRU_DESCRIPTION = #{recru_description},
+        RECRU_TIME = #{recru_time}, P_ID = #{position.p_id}
+        where RECRU_ID = #{recru_id}
+    </update>
+    <delete id="deleteRecruitment">
+        delete from T_RECRUITMENT
+        where RECRU_ID = #{recru_id}
+    </delete>
     <select id="getALLRecruitments" resultMap="recru_pos">
         select rec.*, p.*
         from T_RECRUITMENT rec, T_POSITION p
