@@ -23,4 +23,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getEmployeeByPos(Integer selected) {
         return employeeDao.getEmployeeByPos(selected);
     }
+
+    @Override
+    public List<Employee> getAllEmployee() {
+        return employeeDao.getAllEmployee();
+    }
+
+    @Override
+    public Employee getEmployeeByEmpId(Integer emp_id) {
+        return employeeDao.getEmployeeByEmpId(emp_id);
+    }
+
+
 }

@@ -9,4 +9,8 @@ public interface EmployeeService {
     boolean saveEmployee(Employee employee);
 
     List<Employee> getEmployeeByPos(Integer selected);
+
+    List<Employee> getAllEmployee();
+
+    Employee getEmployeeByEmpId(Integer emp_id);
 }

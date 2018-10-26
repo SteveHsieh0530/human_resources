@@ -13,4 +13,8 @@ public interface EmployeeDao {
     List<Employee> getEmployeeByDepId(Integer dep_id);
 
     List<Employee> getEmployeeByPos(Integer selected);
+
+    List<Employee> getAllEmployee();
+
+    Employee getEmployeeByEmpId(Integer emp_id);
 }
