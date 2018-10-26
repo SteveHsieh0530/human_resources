@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -43,10 +44,20 @@ public class EmployeeController {
     }
 
     @RequestMapping("/updateEmployeeAdmin")
-    public String updateEmployeeAdmin(Model model, Integer emp_id, Integer emp_status, Integer emp_pos_id){
-        System.out.println("updateEmp");
-        boolean check = employeeService.updateEmpByAdmin(emp_id,emp_status,emp_pos_id);
-        return showEmpDetail(emp_id, model);
+    public String updateEmployeeAdmin(Model model, Employee employee, Integer emp_pos_id){
+
+        // 如果转正要先确定员工到目前时间是否有30天
+        if(employee.getEmp_status() == 1){
+            Date today = new Date();
+            long todayLong = today.getTime();
+            long empLong = employee.getEmp_create_time().getTime();
+            Long timeDifference = (todayLong- empLong) / 1000/60/60/24;
+            if(timeDifference <= 30){
+                return showEmpDetail(employee.getEmp_id(), model);
+            }
+        }
+        boolean check = employeeService.updateEmpByAdmin(employee.getEmp_id(),employee.getEmp_status(),emp_pos_id);
+        return showEmpDetail(employee.getEmp_id(), model);
     }
 
     /*
