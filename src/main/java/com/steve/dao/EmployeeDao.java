@@ -1,5 +1,6 @@
 package com.steve.dao;
 
+import com.steve.model.Department;
 import com.steve.model.Employee;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +18,6 @@ public interface EmployeeDao {
     List<Employee> getAllEmployee();
 
     Employee getEmployeeByEmpId(Integer emp_id);
+
+    void updateEmployee(Employee employee);
 }

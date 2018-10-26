@@ -12,6 +12,11 @@
         #{emp_address},#{emp_phone},#{emp_salary},#{position.p_id},
         #{emp_acc}, #{emp_birth}, #{emp_status}, #{emp_create_time})
     </insert>
+    <update id="updateEmployee">
+        update T_EMPLOYEE
+        set EMP_STATUS = #{emp_status}, P_ID = #{position.p_id}
+        where EMP_ID = #{emp_id}
+    </update>
     <select id="getEmployeeByDepId" resultMap="emp_pos_dep">
         select emp.*
         from T_EMPLOYEE emp, T_POSITION p, T_DEPARTMENT dep

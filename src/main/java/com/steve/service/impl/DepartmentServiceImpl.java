@@ -82,4 +82,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentDao.deleteDepartment(dep_id);
         return true;
     }
+
+    @Override
+    public List<Department> getDepartmentsNotIncludeEmpId(Integer emp_id) {
+        return departmentDao.getDepartmentsNotIncludeEmpId(emp_id);
+    }
 }

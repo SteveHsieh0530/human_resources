@@ -16,4 +16,8 @@ public interface PositionDao {
     void deletePosition(Integer selected);
 
     void updatePosition(Position position);
+
+    List<Position> getPositionsByDepId(Integer selected);
+
+    Position getPositionByPosId(Integer emp_pos_id);
 }

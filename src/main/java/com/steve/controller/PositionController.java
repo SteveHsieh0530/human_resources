@@ -7,6 +7,7 @@ import com.steve.service.PositionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -45,6 +46,17 @@ public class PositionController {
     public String updatePosition(Position position, Model model){
         boolean check = positionService.updatePosition(position);
         return goCreatePosition(model);
+    }
+
+
+    /*
+        ajax， 参数是部门id， 用部门id去查部门下的全部职位
+     */
+    @RequestMapping("/showDifferentPos")
+    public @ResponseBody
+    List<Position> showDifferentPos(Integer selected){
+        List<Position> positions = positionService.getPositionsByDepId(selected);
+        return positions;
     }
 
 

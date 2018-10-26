@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="createNewRecruitment" method="post">
+    招聘岗位:<input name="position_name"><br/>
+    招聘信息: <input name="recru_description"><br/>
+    招聘需求<input name="recru_require"><br/>
+    <input type="submit">
+</form>
+
+<table>
+    <tr>
+        <td>招聘岗位</td>
+        <td>招聘信息</td>
+        <td>招聘需求</td>
+        <td>更新招聘信息</td>
+        <td>删除</td>
+    </tr>
+    <tr th:each="rec : ${recruitments}">
+        <form action="updateRecruitment" method="post">
+            <td>
+                <input name="position_name" th:value="${rec.position.p_name}">
+            </td>
+            <td>
+                <input name="recru_description" th:value="${rec.recru_description}">
+            </td>
+            <td>
+                <input name="recru_require" th:value="${rec.recru_require}">
+            </td>
+            <td>
+                <input type="hidden" name="recru_id" th:value="${rec.recru_id}"/>
+                <input type="submit" th:value="更新招聘信息"/>
+            </td>
+        </form>
+        <td>
+            <form action="deleteRecruitment" method="post">
+                <input type="hidden" name="recru_id" th:value="${rec.recru_id}"/>
+                <input type="submit" th:value="删除该死的招聘信息"/>
+            </form>
+        </td>
+
+    </tr>
+</table>
+</body>
+</html>

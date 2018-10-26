@@ -19,4 +19,6 @@ public interface DepartmentDao {
     Department getDepartmentById(Integer dep_id);
 
     void deleteDepartment(Integer dep_id);
+
+    List<Department> getDepartmentsNotIncludeEmpId(Integer emp_id);
 }

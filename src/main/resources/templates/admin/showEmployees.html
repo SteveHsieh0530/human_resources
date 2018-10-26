@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<table>
+    <tr>
+        <td>名字</td>
+        <td>性别</td>
+        <td>职位</td>
+        <td>录取时间</td>
+        <td>部门名字</td>
+        <td>在职状态</td>
+        <td>联系方式</td>
+    </tr>
+    <tr th:each="emp : ${employees}">
+        <td>
+            <a th:href="@{'showEmpDetail?emp_id=' + ${emp.emp_id}}" th:text="${emp.emp_name}"></a>
+        </td>
+        <td th:text="${emp.emp_gender}"></td>
+        <td th:text="${emp.position.p_name}"></td>
+        <td th:text="${emp.emp_create_time}"></td>
+        <td th:text="${emp.position.department.dep_name}"></td>
+        <td th:switch="${emp.emp_status}">
+            <span th:case="0" th:text="试用期"></span>
+            <span th:case="1" th:text="正式员工"></span>
+            <span th:case="2" th:text="离职员工"></span>
+        </td>
+        <td th:text="${emp.emp_phone}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -58,4 +58,9 @@ public class PositionServiceImpl implements PositionService {
         positionDao.updatePosition(position);
         return false;
     }
+
+    @Override
+    public List<Position> getPositionsByDepId(Integer selected) {
+        return positionDao.getPositionsByDepId(selected);
+    }
 }

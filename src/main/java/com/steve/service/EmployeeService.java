@@ -13,4 +13,9 @@ public interface EmployeeService {
     List<Employee> getAllEmployee();
 
     Employee getEmployeeByEmpId(Integer emp_id);
+
+    /*
+        管理员用的更新员工方法，只能更新员工在职状态以及职位
+     */
+    boolean updateEmpByAdmin(Integer emp_id, Integer emp_status, Integer emp_pos_id);
 }

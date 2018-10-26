@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script>
+        $(function(){
+            $("#dep_selected").change(function(){
+                var val = $("#dep_selected").val();
+                $.ajax({
+                    type:"get",
+                    url:"showDifferentPos?selected=" + val,
+                    success:function (obj) {
+                        $("#pos_selected").empty();
+                        for(var i = 0; i < obj.length; i++){
+                            var name = obj[i].p_name;
+                            var id = obj[i].p_id;
+                            $("#pos_selected").append("<option value=" +
+                                id + ">" + name + "</option>");
+                        }
+                    }
+                })
+            })
+
+
+        })
+    </script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>gender</td>
+            <td>address</td>
+            <td>phone</td>
+            <td>salary</td>
+            <td>birth</td>
+            <td>status</td>
+            <td>create_time</td>
+            <td>department</td>
+            <td>position</td>
+            <td>更新员工(换岗转正)</td>
+        </tr>
+        <tr>
+            <td th:text="${employee.emp_name}"></td>
+            <td th:text="${employee.emp_gender}"></td>
+            <td th:text="${employee.emp_address}"></td>
+            <td th:text="${employee.emp_phone}"></td>
+            <td th:text="${employee.emp_salary}"></td>
+            <td th:text="${employee.emp_birth}"></td>
+            <td th:text="${employee.emp_name}">
+            </td>
+            <td th:text="${employee.emp_create_time}"></td>
+            <form action="updateEmployeeAdmin" method="post">
+                <td>
+                    <select th:name="emp_status" th:switch="${employee.emp_status}">
+                        <option th:case="0" th:selected="selected" th:value="0">当前为试用期</option>
+                        <option th:case="1" th:selected="selected" th:value="1">当前为正式员工</option>
+                        <option th:case="2" th:selected="selected" th:value="2">当前为离职员工</option>
+                        <option th:value="0">试用期</option>
+                        <option th:value="1">正式员工</option>
+                        <option th:value="2">离职员工</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="dep_selected">
+                        <option th:text="${employee.position.department.dep_name}"
+                        th:value="${employee.position.department.dep_id}"
+                        th:selected="selected">
+                        </option>
+                        <option th:each="dep : ${departments}"
+                           th:text="${dep.dep_name}"
+                           th:value="${dep.dep_id}"
+                        ></option>
+                    </select>
+                </td>
+                <td>
+                    <select id="pos_selected" name="emp_pos_id">
+                        <option th:text="${employee.position.p_name}"
+                           th:value="${employee.position.p_id}"
+                           th:selected="selected">
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <input type="hidden" th:name="emp_id" th:value="${employee.emp_id}">
+                    <input type="submit" value="更改该死的岗位">
+                </td>
+            </form>
+        </tr>
+    </table>
+</body>
+</html>

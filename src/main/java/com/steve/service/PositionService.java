@@ -14,4 +14,6 @@ public interface PositionService {
     boolean deletePosition(Integer selected);
 
     boolean updatePosition(Position position);
+
+    List<Position> getPositionsByDepId(Integer selected);
 }

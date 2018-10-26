@@ -14,4 +14,6 @@ public interface DepartmentService {
     boolean updateDepartment(Department department);
 
     boolean deleteDepartment(Integer dep_id);
+
+    List<Department> getDepartmentsNotIncludeEmpId(Integer emp_id);
 }

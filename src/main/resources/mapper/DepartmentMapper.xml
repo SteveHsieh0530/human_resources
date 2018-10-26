@@ -31,4 +31,10 @@
         select *
         from T_DEPARTMENT
     </select>
+    <select id="getDepartmentsNotIncludeEmpId" resultType="com.steve.model.Department">
+        select DISTINCT dep.*
+        from T_DEPARTMENT dep, T_POSITION pos, T_EMPLOYEE emp
+        where dep.DEP_ID!=(select DEP_ID from T_POSITION where P_ID =
+        (SELECT P_ID from T_EMPLOYEE where EMP_ID = #{emp_id}))
+    </select>
 </mapper>
