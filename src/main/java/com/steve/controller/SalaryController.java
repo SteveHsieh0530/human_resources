@@ -14,5 +14,6 @@ public class SalaryController {
     public String generateLastMonthSalary (){
         salaryService.generateLastMonthSalary();
         return "";
+
     }
 }
