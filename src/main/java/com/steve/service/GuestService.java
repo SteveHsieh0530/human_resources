@@ -8,4 +8,6 @@ public interface GuestService {
     boolean register(String name, String pass);
 
     Guest getGuestById(Integer guest_id);
+
+
 }

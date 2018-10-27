@@ -1,14 +1,8 @@
 package com.steve.controller;
 
 
-import com.steve.model.Guest;
-import com.steve.model.Interview;
-import com.steve.model.Recruitment;
-import com.steve.model.Resume;
-import com.steve.service.GuestService;
-import com.steve.service.InterviewService;
-import com.steve.service.RecruitmentService;
-import com.steve.service.ResumeService;
+import com.steve.model.*;
+import com.steve.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +24,8 @@ public class GuestController {
     private RecruitmentService recruitmentService;
     @Autowired
     private InterviewService interviewService;
-
+    @Resource
+    private EmployeeService employeeService;
 
     @RequestMapping("/goRegister")
     public String goRegister(){
@@ -52,7 +47,12 @@ public class GuestController {
         //管理员这里的登录设计记得要改 目前只是方便测试
         if(acc.equals("admin") && pass.equals("admin")){
             return goAdminInfo();
-        }else{
+        }else if(acc.length() > 6){
+            Employee employee = employeeService.login(acc, pass);
+            session.setAttribute("employee", employee);
+            return "/employee/employeeInfo";
+        }
+        else{
             Guest guest = guestService.Login(acc, pass);
             session.setAttribute("guest", guest);
             return goGuestInfo(session, model);

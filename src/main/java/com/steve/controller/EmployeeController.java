@@ -51,7 +51,7 @@ public class EmployeeController {
             Date today = new Date();
             long todayLong = today.getTime();
             long empLong = employee.getEmp_create_time().getTime();
-            Long timeDifference = (todayLong- empLong) / 1000/60/60/24;
+            long timeDifference = (todayLong- empLong) / 1000/60/60/24;
             if(timeDifference <= 30){
                 return showEmpDetail(employee.getEmp_id(), model);
             }
@@ -70,5 +70,10 @@ public class EmployeeController {
         model.addAttribute("employee", employee);
         model.addAttribute("departments", departments);
         return "/admin/showEmpDetail";
+    }
+
+    @RequestMapping("/goEmployeeInfo")
+    public String goEmployeeInfo(){
+        return "/employee/employeeInfo";
     }
 }

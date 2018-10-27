@@ -2,6 +2,7 @@ package com.steve.controller;
 
 import com.steve.model.*;
 import com.steve.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +13,13 @@ import java.util.List;
 
 @Controller
 public class AdminController {
-    @Resource
+    @Autowired
     private InterviewService interviewService;
-    @Resource
+    @Autowired
     private PositionService positionService;
-    @Resource
+    @Autowired
     private EmployeeService employeeService;
-    @Resource
+    @Autowired
     private GuestService guestService;
 
     @RequestMapping("/checkInterview")

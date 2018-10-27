@@ -13,6 +13,7 @@
         where G_ID = #{guest_id}
     </select>
 
+
     <insert id="saveGuest">
         insert into T_GUEST values (GUEST_SEQ.nextval, #{g_name}, #{g_pass})
     </insert>

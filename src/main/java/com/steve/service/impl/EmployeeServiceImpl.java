@@ -54,5 +54,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         return true;
     }
 
+    @Override
+    public Employee login(String acc, String pass) {
+        Employee employee = new Employee();
+        employee.setEmp_acc(acc);
+        employee.setEmp_pass(pass);
+        return employeeDao.getEmployeeByNameAndPass(employee);
+    }
+
 
 }

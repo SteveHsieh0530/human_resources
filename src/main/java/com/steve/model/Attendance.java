@@ -4,36 +4,34 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Attendance implements Serializable {
-    private Integer A_ID;
-    private Date A_IN_TIME;
-    private Date A_OUT_TIME;
+    private Integer a_id;
+    private Date a_in_time;
+    private Date a_out_time;
     private Employee employee;
+    private Integer a_status;
 
-    public Attendance() {
+    public Integer getA_id() {
+        return a_id;
     }
 
-    public Integer getA_ID() {
-        return A_ID;
+    public void setA_id(Integer a_id) {
+        this.a_id = a_id;
     }
 
-    public void setA_ID(Integer a_ID) {
-        A_ID = a_ID;
+    public Date getA_in_time() {
+        return a_in_time;
     }
 
-    public Date getA_IN_TIME() {
-        return A_IN_TIME;
+    public void setA_in_time(Date a_in_time) {
+        this.a_in_time = a_in_time;
     }
 
-    public void setA_IN_TIME(Date a_IN_TIME) {
-        A_IN_TIME = a_IN_TIME;
+    public Date getA_out_time() {
+        return a_out_time;
     }
 
-    public Date getA_OUT_TIME() {
-        return A_OUT_TIME;
-    }
-
-    public void setA_OUT_TIME(Date a_OUT_TIME) {
-        A_OUT_TIME = a_OUT_TIME;
+    public void setA_out_time(Date a_out_time) {
+        this.a_out_time = a_out_time;
     }
 
     public Employee getEmployee() {
@@ -42,5 +40,13 @@ public class Attendance implements Serializable {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Integer getA_status() {
+        return a_status;
+    }
+
+    public void setA_status(Integer a_status) {
+        this.a_status = a_status;
     }
 }

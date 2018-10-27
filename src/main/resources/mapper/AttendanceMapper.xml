@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.steve.dao.AttendanceDao">
+    <insert id="saveAttendance">
+        insert into T_ATTENDANCE
+        (A_ID, A_IN_TIME, EMP_ID, A_STATUS)
+        values (ATT_SEQ.nextval, #{a_in_time}, #{employee.emp_id}, #{a_status})
+    </insert>
+    <update id="updateAttendance">
+        update T_ATTENDANCE
+        set A_OUT_TIME = #{a_out_time}, A_STATUS = #{a_status}
+        where A_ID = #{a_id}
+    </update>
+    <select id="getAttendanceByDayAndEmp" parameterType="hashmap" resultType="com.steve.model.Attendance">
+       select *
+       from T_ATTENDANCE
+       WHERE TO_CHAR(A_IN_TIME,'dd') = #{day} and
+       EMP_ID = #{emp_id}
+    </select>
+
+
+
+    <resultMap id="attendance_employee" type="com.steve.model.Attendance">
+        <id property="a_id" column="A_ID"/>
+        <result property="a_in_time" column="A_IN_TIME"/>
+        <result property="a_out_time" column="A_OUT_TIME"/>
+        <result property="a_status" column="A_STATUS"/>
+        <association property="employee" javaType="com.steve.model.Employee">
+            <id property="emp_id" column="EMP_ID"/>
+            <result property="emp_name" column="EMP_NAME"/>
+            <result property="emp_pass" column="EMP_PASS"/>
+            <result property="emp_gender" column="EMP_GENDER"/>
+            <result property="emp_address" column="EMP_ADDRESS"/>
+            <result property="emp_phone" column="EMP_PHONE"/>
+            <result property="emp_salary" column="EMP_SALARY"/>
+            <result property="emp_acc" column="EMP_ACC"/>
+            <result property="emp_birth" column="EMP_BIRTH"/>
+            <result property="emp_status" column="EMP_STATUS"/>
+            <result property="emp_create_time" column="EMP_CREATE_TIME"/>
+            <association property="position" javaType="com.steve.model.Position">
+                <id property="p_id" column="P_ID"/>
+                <result property="p_name" column="P_NAME"/>
+                <result property="p_salary" column="P_SALARY"/>
+                <association property="department" javaType="com.steve.model.Department">
+                    <id property="dep_id" column="DEP_ID"/>
+                    <result property="dep_name" column="DEP_NAME"/>
+                    <result property="dep_create_time" column="DEP_CREATE_TIME"/>
+                </association>
+            </association>
+        </association>
+    </resultMap>
+</mapper>

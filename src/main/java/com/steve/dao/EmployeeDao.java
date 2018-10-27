@@ -20,4 +20,6 @@ public interface EmployeeDao {
     Employee getEmployeeByEmpId(Integer emp_id);
 
     void updateEmployee(Employee employee);
+
+    Employee getEmployeeByNameAndPass(Employee employee);
 }
