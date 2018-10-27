@@ -4,6 +4,7 @@ import com.steve.model.Attendance;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Repository
 public interface AttendanceDao {
@@ -13,4 +14,6 @@ public interface AttendanceDao {
     void saveAttendance(Attendance newAtt);
 
     void updateAttendance(Attendance attendance);
+
+    List<Attendance> getAttendanceByMonthAndEmpId(HashMap<String, Object> hashMap);
 }

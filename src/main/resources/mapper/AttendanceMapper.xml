@@ -20,7 +20,12 @@
        WHERE TO_CHAR(A_IN_TIME,'dd') = #{day} and
        EMP_ID = #{emp_id}
     </select>
-
+    <select id="getAttendanceByMonthAndEmpId" parameterType="hashmap" resultType="com.steve.model.Attendance">
+        select att.*
+        from T_ATTENDANCE att
+        where TO_CHAR(A_IN_TIME,'mm') = #{month} and
+        att.EMP_ID = #{emp_id}
+    </select>
 
 
     <resultMap id="attendance_employee" type="com.steve.model.Attendance">

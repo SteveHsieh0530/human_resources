@@ -20,4 +20,5 @@ public interface EmployeeService {
     boolean updateEmpByAdmin(Integer emp_id, Integer emp_status, Integer emp_pos_id);
 
     Employee login(String acc, String pass);
+
 }

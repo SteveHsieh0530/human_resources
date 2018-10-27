@@ -22,4 +22,6 @@ public interface EmployeeDao {
     void updateEmployee(Employee employee);
 
     Employee getEmployeeByNameAndPass(Employee employee);
+
+    List<Employee> getEmployeeNotLeaving();
 }

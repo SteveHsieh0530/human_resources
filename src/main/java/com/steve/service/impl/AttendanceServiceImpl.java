@@ -24,12 +24,11 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public boolean clockInAndClockOut(Employee employee) {
 
-        //先确定这个员工今天有没打过卡
+        //先确定这个员工今天有没打过卡y
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = formatter.format(currentTime);
         String day = dateString.substring(8, 10);  //得到打卡时的day
-
 
         //用员工id以及今天日期去确认今天是否打过卡
         HashMap<String, Object> search = new HashMap<>();
@@ -60,6 +59,10 @@ public class AttendanceServiceImpl implements AttendanceService {
                 e.printStackTrace();
             }
         }else{
+            //如果下班卡已经打过，那直接返回false，阻止这个操作
+            if(attendance.getA_out_time() != null){
+                return false;
+            }
             //下班卡
             attendance.setA_out_time(currentTime);
             if(attendance.getA_status() == 2){  //已经旷工，下面不需要判断了，都是旷工
@@ -92,6 +95,10 @@ public class AttendanceServiceImpl implements AttendanceService {
                 if(attendance.getA_status()==1){
                     //员工今天的上班时间-应当的上班时间 （秒）
                     long lateTime = (attendance.getA_in_time().getTime() - todayOut_date.getTime()) / 1000;
+                    //如果晚打卡, 相差时间还是0
+                    if(timeDiff < 0){
+                        timeDiff = 0;
+                    }
                     //上班迟到+下班早退超过3小时
                     if((lateTime+timeDiff)>10800){
                         attendance.setA_status(2);
@@ -105,8 +112,6 @@ public class AttendanceServiceImpl implements AttendanceService {
             }
 
         }
-
-
         return false;
     }
 }

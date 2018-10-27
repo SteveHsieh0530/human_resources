@@ -51,6 +51,13 @@
         emp.EMP_ACC = #{emp_acc} and
         emp.EMP_PASS = #{emp_pass}
     </select>
+    <select id="getEmployeeNotLeaving" resultMap="emp_pos_dep">
+         select emp.*, p.*, dep.*
+        from T_EMPLOYEE emp, T_POSITION p, T_DEPARTMENT dep
+        where emp.P_ID = p.P_ID and
+        p.DEP_ID = dep.DEP_ID and
+        emp.EMP_STATUS in (0, 1)
+    </select>
     <resultMap id="emp_pos_dep" type="com.steve.model.Employee">
         <id property="emp_id" column="EMP_ID"/>
         <result property="emp_name" column="EMP_NAME"/>
