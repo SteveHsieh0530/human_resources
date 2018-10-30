@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href="">添加</a>
+<table>
+    <tr>
+        <td>姓名</td>
+        <td>职位</td>
+        <td>培训内容</td>
+        <td>培训开始时间</td>
+        <td>培训结束时间</td>
+    </tr>
+    <tr th:each="tra : ${trainings}">
+            <td>
+                <input name="emp_name" th:value="${tra.employee.emp_name}">
+            </td>
+            <td>
+                <input name="p_name" th:value="${tra.employee.position.p_name}">
+            </td>
+            <td>
+                <input name="tran_start_time" th:value="${tra.tran_start_time}">
+            </td>
+            <td>
+                <input name="tran_end_time" th:value="${tra.tran_end_time}">
+            </td>
+        <td>
+            <form action="deleteRecruitment" method="post">
+                <input type="hidden" name="tran_id" th:value="${tra.tran_id}"/>
+                <input type="submit" th:value="删除该死的培训"/>
+            </form>
+        </td>
+
+    </tr>
+</table>
+</body>
+</html>
